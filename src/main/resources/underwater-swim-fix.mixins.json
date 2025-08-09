@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "bikerboys.underwaterswimfix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExampleMixin",
+    "SwimFixMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
