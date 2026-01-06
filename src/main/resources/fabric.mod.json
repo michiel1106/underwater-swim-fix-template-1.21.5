@@ -3,15 +3,15 @@
 	"id": "underwater-swim-fix",
 	"version": "${version}",
 	"name": "Underwater Swim Fix",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Fixes the bug where if you hit an entity while swimming, the server and client desyncs",
 	"authors": [
-		"Me!"
+		"Bikerboys"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/underwater-swim-fix/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -30,9 +30,9 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.16.10",
-		"minecraft": "*",
-		"java": ">=21",
+		"fabricloader": "*",
+		"minecraft": ">=1.18 <=1.21.10",
+		"java": ">=17",
 		"fabric-api": "*"
 	},
 	"suggests": {

@@ -1,5 +1,6 @@
 package bikerboys.underwaterswimfix.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -24,11 +25,13 @@ public abstract class SwimFixMixin extends LivingEntity {
 
 
 
-    @Redirect(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setSprinting(Z)V"))
-    private void onAttackEntity(PlayerEntity instance, boolean b) {
+
+    @WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setSprinting(Z)V"))
+    private void onAttackEntity(PlayerEntity instance, boolean b, Operation<Void> original) {
         if (instance.isSwimming()) {
-            b = true;
+
+        } else {
+            original.call(instance, b);
         }
     }
-
 }
