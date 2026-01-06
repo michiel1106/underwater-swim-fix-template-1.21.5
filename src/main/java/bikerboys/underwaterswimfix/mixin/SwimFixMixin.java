@@ -25,8 +25,7 @@ public abstract class SwimFixMixin extends LivingEntity {
 
 
 
-
-    @WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setSprinting(Z)V"))
+    @WrapOperation(method = "knockbackTarget", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setSprinting(Z)V"))
     private void onAttackEntity(PlayerEntity instance, boolean b, Operation<Void> original) {
         if (instance.isSwimming()) {
 
