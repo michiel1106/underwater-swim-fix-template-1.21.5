@@ -3,7 +3,6 @@
   "package": "bikerboys.underwaterswimfix.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ExampleMixin",
     "SwimFixMixin"
   ],
   "injectors": {

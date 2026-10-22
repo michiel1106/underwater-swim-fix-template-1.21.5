@@ -1,32 +1,28 @@
 package bikerboys.underwaterswimfix.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
-import com.mojang.datafixers.util.Either;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Unit;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import com.mojang.datafixers.util.*;
 
-@Mixin(PlayerEntity.class)
+import net.minecraft.core.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.Level;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+import java.util.logging.*;
+
+@Mixin(Player.class)
 public abstract class SwimFixMixin extends LivingEntity {
 
-    @Shadow
-    public abstract Either<PlayerEntity.SleepFailureReason, Unit> trySleep(BlockPos pos);
-
-    protected SwimFixMixin(EntityType<? extends LivingEntity> entityType, World world) {
-        super(entityType, world);
+    protected SwimFixMixin(EntityType<? extends LivingEntity> entityType, Level level) {
+        super(entityType, level);
     }
 
 
 
-    @WrapOperation(method = "knockbackTarget", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setSprinting(Z)V"))
-    private void onAttackEntity(PlayerEntity instance, boolean b, Operation<Void> original) {
+    @WrapOperation(method = "causeExtraKnockback", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;setSprinting(Z)V"))
+    private void onAttackEntity(Player instance, boolean b, Operation<Void> original) {
         if (instance.isSwimming()) {
 
         } else {
